@@ -3,6 +3,8 @@
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
+(global-linum-mode t)
+
 (setq gc-cons-threshold 100000000)
 (setq inhibit-startup-message t)
 
@@ -10,6 +12,8 @@
 
 (defconst demo-packages
   '(anzu
+    ecb
+    monokai-theme
     company
     duplicate-thing
     ggtags
@@ -158,3 +162,42 @@
 
 ;; Package zygospore
 (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
+
+
+(require 'monokai-theme)
+(load-theme 'monokai t)
+
+(require 'ecb)
+(setq ecb-layout-name "leftright3")
+(setq ecb-tip-of-the-day nil)
+(setq ecb-show-sources-in-directories-buffer 'always)
+
+;;; activate and deactivate ecb
+(global-set-key (kbd "C-x C-;") 'ecb-activate)
+(global-set-key (kbd "C-x C-'") 'ecb-deactivate)
+;;; show/hide ecb window
+(global-set-key (kbd "C-;") 'ecb-show-ecb-windows)
+(global-set-key (kbd "C-'") 'ecb-hide-ecb-windows)
+;;; quick navigation between ecb windows
+(global-set-key (kbd "C-)") 'ecb-goto-window-edit1)
+(global-set-key (kbd "C-!") 'ecb-goto-window-directories)
+(global-set-key (kbd "C-@") 'ecb-goto-window-sources)
+(global-set-key (kbd "C-#") 'ecb-goto-window-methods)
+(global-set-key (kbd "C-$") 'ecb-goto-window-compilation)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ecb-layout-window-sizes
+   (quote
+    (("leftright3"
+      (ecb-directories-buffer-name 0.17472118959107807 . 0.9846153846153847)
+      (ecb-methods-buffer-name 0.1412639405204461 . 0.9846153846153847)))))
+ '(ecb-options-version "2.40"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
